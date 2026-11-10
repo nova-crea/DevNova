@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NovaCréa — Développement web et mobile sur mesure</title>
+<meta name="description" content="NovaCréa conçoit et développe des sites web, applications web et applications mobiles robustes. Décrivez votre projet en 5 minutes grâce à notre brief guidé.">
+<style>
+:root{--bg:#0a0e1f;--bg2:#10162e;--card:#151c3a;--tx:#eef1ff;--mu:#9aa6d1;--ac:#7c5cff;--ac2:#22d3ee;--bd:#273060;--ok:#34d399;--err:#fb7185;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f7ff;--bg2:#eceffd;--card:#fff;--tx:#12183a;--mu:#55608f;--bd:#d8def5;color-scheme:light}}
+:root[data-theme="dark"]{--bg:#0a0e1f;--bg2:#10162e;--card:#151c3a;--tx:#eef1ff;--mu:#9aa6d1;--bd:#273060;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+a{color:inherit}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{font-weight:800;font-size:20px;text-decoration:none;letter-spacing:-.02em}.logo b{background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.links{display:flex;gap:18px;font-size:14px;color:var(--mu)}.links a{text-decoration:none}.links a:hover{color:var(--tx)}
+.btn{display:inline-block;border:0;cursor:pointer;font:600 15px/1 inherit;font-family:inherit;padding:14px 22px;border-radius:12px;background:linear-gradient(90deg,var(--ac),#5b7cff);color:#fff;text-decoration:none}
+.btn.sec{background:transparent;border:1px solid var(--bd);color:var(--tx)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.hero{padding:64px 0 40px;background:radial-gradient(600px 300px at 80% -10%,rgba(124,92,255,.35),transparent),radial-gradient(500px 260px at 0 10%,rgba(34,211,238,.18),transparent)}
+.tag{display:inline-block;font-size:13px;color:var(--ac2);border:1px solid var(--bd);padding:5px 12px;border-radius:99px;margin-bottom:18px}
+h1{font-size:clamp(32px,6vw,56px);line-height:1.08;margin:0 0 16px;letter-spacing:-.03em}h2{font-size:clamp(24px,4vw,36px);margin:0 0 10px;letter-spacing:-.02em}h3{margin:0 0 6px;font-size:18px}
+.lead{color:var(--mu);font-size:18px;max-width:640px}.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:40px}
+.proof div{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}.proof b{display:block;font-size:20px}.proof span{color:var(--mu);font-size:14px}
+section{padding:56px 0}.alt{background:var(--bg2)}.sub{color:var(--mu);max-width:640px;margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:22px}.card p{margin:0;color:var(--mu);font-size:15px}
+.ic{font-size:26px;margin-bottom:8px}.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.steps .card::before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;font-weight:700;margin-bottom:10px}
+.stack{display:flex;flex-wrap:wrap;gap:8px}.stack span{border:1px solid var(--bd);background:var(--card);padding:7px 14px;border-radius:99px;font-size:14px}
+.sg{margin-bottom:18px}.sg small{display:block;color:var(--mu);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+/* brief */
+.form{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:24px;max-width:760px;margin:0 auto}
+.bar{height:6px;background:var(--bd);border-radius:9px;overflow:hidden;margin-bottom:8px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .3s}
+.stp{color:var(--mu);font-size:14px;margin-bottom:18px}
+.f{margin-bottom:18px}.f>label,.f>.q{display:block;font-weight:600;margin-bottom:4px}.hint{color:var(--mu);font-size:13px;margin:0 0 8px}.req{color:var(--err)}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=date],select,textarea{width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:12px;font:inherit}
+textarea{min-height:110px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid var(--ac);border-color:transparent}
+.opts{display:flex;flex-wrap:wrap;gap:8px}.opts label{display:flex;align-items:center;gap:8px;border:1px solid var(--bd);background:var(--bg);padding:10px 14px;border-radius:10px;cursor:pointer;font-size:15px}
+.opts label:has(input:checked){border-color:var(--ac);background:color-mix(in srgb,var(--ac) 18%,var(--bg))}.opts input{accent-color:var(--ac)}
+.err{color:var(--err);font-size:13px;margin-top:4px;display:none}.bad .err{display:block}.bad input,.bad textarea,.bad select{border-color:var(--err)}
+.row{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.sum{background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:14px;font-size:14px;max-height:260px;overflow:auto}.sum p{margin:0 0 6px}.sum b{color:var(--ac2)}
+.msg{padding:14px;border-radius:12px;margin-top:14px;font-size:15px}.msg.ok{background:color-mix(in srgb,var(--ok) 15%,var(--bg));border:1px solid var(--ok)}.msg.ko{background:color-mix(in srgb,var(--err) 15%,var(--bg));border:1px solid var(--err)}
+/* admin */
+.tw{overflow-x:auto}.bl{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:10px}
+.bl h3{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.bl dl{margin:10px 0 0;display:grid;grid-template-columns:150px 1fr;gap:4px 12px;font-size:14px}.bl dt{color:var(--mu)}.bl dd{margin:0;word-break:break-word}
+.pill{font-size:12px;border:1px solid var(--bd);padding:3px 10px;border-radius:99px;color:var(--ac2)}
+footer{border-top:1px solid var(--bd);padding:32px 0;color:var(--mu);font-size:14px}footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hid{display:none!important}
+@media(max-width:640px){.links{display:none}.bl dl{grid-template-columns:1fr}.form{padding:18px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="logo" href="#top">Nova<b>Créa</b></a>
+<nav class="links"><a href="#services">Services</a><a href="#methode">Méthode</a><a href="#stack">Technologies</a><a href="#pourquoi">Pourquoi nous</a></nav>
+<a class="btn" href="#brief" style="padding:11px 16px;font-size:14px">Lancer mon brief</a></div></header>
+
+<main id="site">
+<div id="top" class="hero"><div class="wrap">
+<span class="tag">Web · Mobile · Sur mesure</span>
+<h1>Des applications web et mobile<br>conçues pour durer et grandir.</h1>
+<p class="lead">NovaCréa transforme votre idée en produit numérique robuste : architecture solide, design soigné, code propre et maintenable. Un seul partenaire, de la stratégie à la mise en ligne.</p>
+<div class="cta"><a class="btn" href="#brief">Décrire mon projet</a><a class="btn sec" href="#services">Voir nos services</a></div>
+<div class="proof">
+<div><b>Réponse &lt; 24 h</b><span>à chaque brief reçu</span></div>
+<div><b>Devis détaillé</b><span>sous 3 à 5 jours ouvrés</span></div>
+<div><b>Code vous appartient</b><span>propriété intellectuelle cédée</span></div>
+<div><b>Suivi hebdomadaire</b><span>points d’avancement clairs</span></div>
+</div></div></div>
+
+<section id="services"><div class="wrap">
+<h2>Ce que nous construisons</h2><p class="sub">Du site vitrine à la plateforme complexe, nous couvrons le web et le mobile avec la même exigence de qualité.</p>
+<div class="grid">
+<div class="card"><div class="ic">🌐</div><h3>Sites web &amp; vitrines</h3><p>Sites rapides, référencés et pensés pour convertir vos visiteurs en clients.</p></div>
+<div class="card"><div class="ic">🧩</div><h3>Applications web</h3><p>Plateformes SaaS, portails clients, back-offices et outils métier sur mesure.</p></div>
+<div class="card"><div class="ic">📱</div><h3>Applications mobiles</h3><p>iOS et Android, natif ou multiplateforme (React Native, Flutter), publiées sur les stores.</p></div>
+<div class="card"><div class="ic">🛒</div><h3>E-commerce</h3><p>Boutiques performantes, paiement sécurisé, gestion des stocks et des commandes.</p></div>
+<div class="card"><div class="ic">🎨</div><h3>UX / UI Design</h3><p>Maquettes et prototypes interactifs validés avant d’écrire la moindre ligne de code.</p></div>
+<div class="card"><div class="ic">🔧</div><h3>Audit &amp; maintenance</h3><p>Audit technique, optimisation des performances, sécurité et évolutions continues.</p></div>
+</div></div></section>
+
+<section id="methode" class="alt"><div class="wrap">
+<h2>Notre méthode, du brief à la mise en ligne</h2><p class="sub">Architecture d’abord, code ensuite. Chaque étape est cadrée, transparente et validée avec vous.</p>
+<div class="steps">
+<div class="card"><h3>Brief &amp; cadrage</h3><p>Vous remplissez notre questionnaire guidé. Nous analysons vos besoins, risques et priorités.</p></div>
+<div class="card"><h3>Architecture &amp; design</h3><p>Choix techniques, maquettes et prototype : vous voyez le produit avant qu’il existe.</p></div>
+<div class="card"><h3>Développement agile</h3><p>Livraisons par sprints, tests continus et démonstrations régulières.</p></div>
+<div class="card"><h3>Lancement &amp; suivi</h3><p>Mise en production, monitoring, formation et évolutions après lancement.</p></div>
+</div></div></section>
+
+<section id="stack"><div class="wrap">
+<h2>Des technologies éprouvées</h2><p class="sub">Nous choisissons la stack adaptée à votre projet, pas l’inverse.</p>
+<div class="sg"><small>Front-end</small><div class="stack"><span>React</span><span>Vue</span><span>Angular</span><span>Next.js</span><span>TypeScript</span></div></div>
+<div class="sg"><small>Mobile</small><div class="stack"><span>React Native</span><span>Flutter</span><span>Swift</span><span>Kotlin</span></div></div>
+<div class="sg"><small>Back-end</small><div class="stack"><span>Node.js</span><span>Python / Django</span><span>PHP / Laravel</span><span>.NET</span><span>Java</span></div></div>
+<div class="sg"><small>Cloud &amp; DevOps</small><div class="stack"><span>AWS</span><span>Azure</span><span>Google Cloud</span><span>Docker</span><span>CI/CD</span></div></div>
+</div></section>
+
+<section id="pourquoi" class="alt"><div class="wrap">
+<h2>Pourquoi choisir NovaCréa</h2><p class="sub">Les engagements qui font la différence sur un projet web ou mobile.</p>
+<div class="grid">
+<div class="card"><h3>📈 Conçu pour évoluer</h3><p>Une architecture pensée pour votre croissance de demain, sans dette technique cachée.</p></div>
+<div class="card"><h3>🔍 Transparence totale</h3><p>Budget, planning et avancement partagés. Vous savez toujours où en est votre projet.</p></div>
+<div class="card"><h3>🤝 Un partenaire, pas un prestataire</h3><p>Nous nous impliquons dans vos objectifs business, pas seulement dans le code.</p></div>
+<div class="card"><h3>🔒 Sécurité intégrée</h3><p>Bonnes pratiques, conformité RGPD et accessibilité prévues dès la conception.</p></div>
+<div class="card"><h3>⚡ Performance mesurée</h3><p>Temps de chargement, SEO technique et conversion suivis après la mise en ligne.</p></div>
+<div class="card"><h3>🧠 IA au service de la qualité</h3><p>Outils d’IA pour accélérer les tests et la livraison, avec relecture humaine systématique.</p></div>
+</div></div></section>
+
+<section id="brief"><div class="wrap">
+<div style="text-align:center;margin-bottom:26px"><h2>Votre brief projet</h2><p class="sub" style="margin:0 auto">5 étapes, environ 5 minutes. Plus vos réponses sont précises, plus notre devis sera juste.</p></div>
+<div class="form" id="form"></div>
+</div></section>
+</main>
+
+<main id="admin" class="hid"><section><div class="wrap">
+<h2>Espace NovaCréa — briefs reçus</h2>
+<p class="sub" id="adm-st">Chargement…</p>
+<div class="cta" style="margin:0 0 20px"><button class="btn sec" id="csv">Exporter en CSV</button><a class="btn sec" href="#top">← Retour au site</a></div>
+<div id="adm-list"></div>
+</div></section></main>
+
+<main id="legal" class="hid"><section><div class="wrap" style="max-width:780px">
+<a class="btn sec" href="#top" style="margin-bottom:22px">← Retour au site</a>
+<h2>Mentions légales</h2>
+<p class="sub" style="max-width:none">Les éléments entre crochets sont à compléter avec vos informations réelles.</p>
+<div class="card" style="margin-bottom:14px"><h3>Éditeur du site</h3><p>[Raison sociale] NovaCréa, [forme juridique] au capital de [montant] €<br>SIRET : [numéro] — TVA intracommunautaire : [numéro]<br>Siège social : [adresse complète]<br>Directeur de la publication : [nom et prénom]<br>Contact : [email] — [téléphone]</p></div>
+<div class="card" style="margin-bottom:28px"><h3>Hébergement</h3><p>Site : [Netlify / Vercel / autre hébergeur — nom, adresse, site web]<br>Base de données : Supabase Inc. (région choisie : [UE, ex. Francfort]).</p></div>
+<h2>Politique de confidentialité</h2>
+<div class="card" style="margin-bottom:14px"><h3>Responsable du traitement</h3><p>NovaCréa, coordonnées ci-dessus. Contact pour toute question sur vos données : [email dédié].</p></div>
+<div class="card" style="margin-bottom:14px"><h3>Données collectées et finalités</h3><p>Via le brief projet : identité, coordonnées, société, rôle, description de votre projet, besoins techniques, budget et délais. Elles servent uniquement à analyser votre demande, vous répondre et établir un devis.</p></div>
+<div class="card" style="margin-bottom:14px"><h3>Base légale</h3><p>Votre consentement (case cochée avant l’envoi) et les mesures précontractuelles prises à votre demande.</p></div>
+<div class="card" style="margin-bottom:14px"><h3>Destinataires et sous-traitants</h3><p>Seule l’équipe NovaCréa accède à vos réponses. Nous utilisons Supabase (stockage) et Resend (notification email interne). Ces prestataires agissent sur nos instructions. [Précisez les garanties applicables si des données sont transférées hors Union européenne.]</p></div>
+<div class="card" style="margin-bottom:14px"><h3>Durée de conservation</h3><p>[3 ans] après notre dernier échange si aucun contrat n’est conclu. En cas de contrat, les données sont conservées pendant sa durée puis archivées selon les obligations légales.</p></div>
+<div class="card" style="margin-bottom:14px"><h3>Vos droits</h3><p>Vous pouvez demander l’accès, la rectification, l’effacement, la limitation, la portabilité de vos données, vous opposer à leur traitement et retirer votre consentement à tout moment, en écrivant à [email dédié]. Vous pouvez aussi introduire une réclamation auprès de la CNIL (cnil.fr).</p></div>
+<div class="card"><h3>Cookies</h3><p>Ce site n’utilise aucun cookie de suivi ni outil de mesure d’audience. Seul l’espace équipe stocke temporairement une session de connexion dans le navigateur de ses utilisateurs.</p></div>
+<p class="sub" style="margin-top:20px;font-size:13px">Ce modèle est fourni à titre indicatif et ne remplace pas un conseil juridique : faites-le valider avant publication.</p>
+</div></section></main>
+<footer><div class="wrap"><span>© 2026 NovaCréa — Développement web et mobile</span><span><a href="#legal">Mentions légales &amp; confidentialité</a> · <a href="#admin">Espace équipe</a></span></div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const STEPS=[
+{t:"Vos coordonnées",f:[
+ {k:"nom",l:"Nom complet",type:"text",req:1},
+ {k:"email",l:"Email professionnel",type:"email",req:1},
+ {k:"tel",l:"Téléphone",type:"tel",h:"Facultatif, pour un échange rapide."},
+ {k:"societe",l:"Société / organisation",type:"text"},
+ {k:"role",l:"Votre rôle",type:"select",o:["Dirigeant / fondateur","Chef de projet / produit","Responsable marketing","Responsable technique (CTO/DSI)","Particulier / indépendant","Autre"]}]},
+{t:"Votre projet",f:[
+ {k:"type",l:"Quel type de projet ?",type:"radio",req:1,o:["Site web / vitrine","Application web","Application mobile","Web + mobile","E-commerce","Refonte d’un existant","Je ne sais pas encore"]},
+ {k:"objectif",l:"Quel est l’objectif principal ?",type:"radio",req:1,o:["Générer des leads / clients","Vendre en ligne","Digitaliser un processus interne","Lancer un nouveau produit / une startup","Améliorer l’existant","Autre"]},
+ {k:"description",l:"Décrivez votre projet en quelques lignes",type:"textarea",req:1,h:"Contexte, problème à résoudre, public visé. Pas besoin d’être technique."},
+ {k:"cible",l:"Qui sont vos utilisateurs ?",type:"text",h:"Ex. : clients particuliers, équipe interne, restaurateurs…"}]},
+{t:"Fonctionnalités",f:[
+ {k:"plateformes",l:"Plateformes visées",type:"check",o:["Site web","iOS","Android","Application web (PWA)"]},
+ {k:"fonctions",l:"Fonctionnalités souhaitées",type:"check",req:1,h:"Cochez tout ce qui s’applique.",o:["Comptes utilisateurs / connexion","Paiement en ligne","Espace administrateur","Tableau de bord / statistiques","Notifications push / email","Messagerie / chat","Réservation / calendrier","Géolocalisation / carte","Recherche avancée","Multilingue","Mode hors ligne","Intelligence artificielle"]},
+ {k:"integrations",l:"Intégrations avec d’autres outils",type:"text",h:"CRM, ERP, Stripe, API existante, etc."},
+ {k:"details",l:"Autres besoins ou contraintes",type:"textarea"}]},
+{t:"Technique & design",f:[
+ {k:"existant",l:"Avez-vous déjà un site ou une application ?",type:"radio",req:1,o:["Non, tout est à créer","Oui, à refaire","Oui, à faire évoluer"]},
+ {k:"url",l:"Adresse de l’existant ou de références",type:"url",h:"Lien vers votre site actuel ou vers des sites qui vous inspirent."},
+ {k:"design",l:"Où en êtes-vous côté design ?",type:"radio",req:1,o:["Rien, j’ai besoin d’un design complet","J’ai une charte graphique / un logo","J’ai des maquettes prêtes"]},
+ {k:"hebergement",l:"Hébergement et technologies",type:"radio",o:["Aucune préférence, conseillez-moi","J’ai des préférences techniques","Contraintes imposées (précisez ci-dessus)"]},
+ {k:"contenus",l:"Qui fournit les contenus (textes, images) ?",type:"radio",o:["Moi","NovaCréa","À définir"]}]},
+{t:"Budget & délais",f:[
+ {k:"budget",l:"Budget estimé",type:"radio",req:1,o:["Moins de 3 000 €","3 000 – 10 000 €","10 000 – 30 000 €","30 000 – 80 000 €","Plus de 80 000 €","À définir avec vous"]},
+ {k:"delai",l:"Quand souhaitez-vous démarrer ?",type:"radio",req:1,o:["Dès que possible","Dans 1 à 3 mois","Dans plus de 3 mois","Je me renseigne"]},
+ {k:"livraison",l:"Date de livraison souhaitée",type:"date",h:"Facultatif."},
+ {k:"maintenance",l:"Souhaitez-vous un suivi après la livraison ?",type:"radio",o:["Oui, maintenance et évolutions","Peut-être","Non"]},
+ {k:"source",l:"Comment nous avez-vous connus ?",type:"select",o:["Recherche Google","Recommandation","Réseaux sociaux","Autre"]},
+ {k:"consent",l:"",type:"consent",req:1}]}
+];
+const LAB={};STEPS.forEach(s=>s.f.forEach(f=>LAB[f.k]=f.l));
+let step=0,A={};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const val=v=>Array.isArray(v)?v.join(", "):v||"";
+
+function field(f){
+ const v=A[f.k];let h=`<div class="f" data-k="${f.k}">`;
+ if(f.type==="consent"){
+  return h+`<label class="opts" style="display:block"><label style="cursor:pointer"><input type="checkbox" data-c="1" ${v?"checked":""}> J’accepte que NovaCréa utilise ces informations pour me recontacter au sujet de mon projet, conformément à la <a href="#legal" target="_blank" style="color:var(--ac2)">politique de confidentialité</a>.</label></label><div class="err">Votre accord est nécessaire pour envoyer le brief.</div></div>`;
+ }
+ h+=`<label class="q">${f.l}${f.req?' <span class="req">*</span>':""}</label>`;
+ if(f.h)h+=`<p class="hint">${f.h}</p>`;
+ if(["text","email","tel","url","date"].includes(f.type))h+=`<input type="${f.type}" value="${esc(v)}" data-i="1">`;
+ else if(f.type==="textarea")h+=`<textarea data-i="1">${esc(v)}</textarea>`;
+ else if(f.type==="select")h+=`<select data-i="1"><option value="">— Choisir —</option>${f.o.map(o=>`<option ${v===o?"selected":""}>${o}</option>`).join("")}</select>`;
+ else h+=`<div class="opts">${f.o.map(o=>`<label><input type="${f.type==="radio"?"radio":"checkbox"}" name="${f.k}" value="${esc(o)}" ${(f.type==="radio"?v===o:(v||[]).includes(o))?"checked":""}> ${o}</label>`).join("")}</div>`;
+ return h+`<div class="err">${f.type==="email"?"Merci d’indiquer un email valide.":"Ce champ est requis."}</div></div>`;
+}
+function collect(){
+ document.querySelectorAll("#form .f").forEach(d=>{
+  const k=d.dataset.k,f=STEPS[step].f.find(x=>x.k===k);
+  if(f.type==="consent")A[k]=d.querySelector("input").checked;
+  else if(f.type==="check")A[k]=[...d.querySelectorAll("input:checked")].map(i=>i.value);
+  else if(f.type==="radio"){const c=d.querySelector("input:checked");A[k]=c?c.value:"";}
+  else A[k]=d.querySelector("[data-i]").value.trim();
+ });
+}
+function validate(){
+ let ok=true;
+ document.querySelectorAll("#form .f").forEach(d=>{
+  const f=STEPS[step].f.find(x=>x.k===d.dataset.k),v=A[f.k];
+  let bad=f.req&&(f.type==="check"?!v.length:!v);
+  if(!bad&&f.type==="email"&&v&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v))bad=true;
+  d.classList.toggle("bad",!!bad);if(bad)ok=false;
+ });
+ if(!ok)document.querySelector("#form .bad")?.scrollIntoView({behavior:"smooth",block:"center"});
+ return ok;
+}
+function render(){
+ const n=STEPS.length,F=$("#form");
+ if(step>=n){
+  F.innerHTML=`<div class="bar"><i style="width:100%"></i></div><div class="stp">Dernière vérification</div><h3>Récapitulatif de votre brief</h3><div class="sum">${Object.keys(LAB).filter(k=>val(A[k])&&k!=="consent").map(k=>`<p><b>${esc(LAB[k])}</b><br>${esc(val(A[k]))}</p>`).join("")}</div><div id="res"></div><div class="row"><button class="btn sec" id="prev">← Modifier</button><button class="btn" id="send">Envoyer mon brief</button></div>`;
+  $("#prev").onclick=()=>{step=n-1;render()};$("#send").onclick=send;return;
+ }
+ F.innerHTML=`<div class="bar"><i style="width:${(step/n)*100+10}%"></i></div><div class="stp">Étape ${step+1} sur ${n} — ${STEPS[step].t}</div>${STEPS[step].f.map(field).join("")}<div class="row"><button class="btn sec" id="prev" ${step?"":'style="visibility:hidden"'}>← Retour</button><button class="btn" id="next">${step===n-1?"Voir le récapitulatif":"Continuer →"}</button></div>`;
+ $("#prev").onclick=()=>{collect();step--;render();F.scrollIntoView({behavior:"smooth"})};
+ $("#next").onclick=()=>{collect();if(validate()){step++;render();$("#brief").scrollIntoView({behavior:"smooth"})}};
+}
+/* ===== CONFIGURATION : à remplir ===== */
+const SB_URL="https://VOTRE-PROJET.supabase.co";
+const SB_KEY="VOTRE_CLE_ANON_PUBLIQUE";
+const MAIL="contact@votredomaine.com";
+/* ====================================== */
+const H=t=>({apikey:SB_KEY,Authorization:"Bearer "+(t||SB_KEY),"Content-Type":"application/json"});
+const cfg=()=>!SB_URL.includes("VOTRE");
+async function send(){
+ const b=$("#send"),r=$("#res");b.disabled=true;b.textContent="Envoi…";
+ const rec={...A,consent:true,recu:new Date().toISOString()};
+ try{
+  if(!cfg())throw 0;
+  const x=await fetch(SB_URL+"/rest/v1/briefs",{method:"POST",headers:{...H(),Prefer:"return=minimal"},body:JSON.stringify({nom:A.nom,email:A.email,type:A.type,budget:A.budget,donnees:rec})});
+  if(!x.ok)throw 0;
+  $("#form").innerHTML=`<h3>✅ Merci ${esc((A.nom||"").split(" ")[0])} !</h3><p>Votre brief a bien été enregistré. Notre équipe l’analyse et vous répond sous 24 h ouvrées. Un devis détaillé suit sous 3 à 5 jours.</p><a class="btn sec" href="#top">Retour à l’accueil</a>`;
+  A={};step=0;
+ }catch(e){
+  b.disabled=false;b.textContent="Envoyer mon brief";
+  const txt=Object.keys(LAB).filter(k=>val(rec[k])&&k!=="consent").map(k=>`${LAB[k]} : ${val(rec[k])}`).join("\n");
+  r.innerHTML=`<div class="msg ko">L’envoi automatique a échoué. Vous pouvez nous transmettre votre brief par email en un clic.<br><br><a class="btn" href="mailto:${MAIL}?subject=${encodeURIComponent("Brief projet — "+(A.nom||""))}&body=${encodeURIComponent(txt)}">Envoyer par email</a></div>`;
+ }
+}
+/* ---- Espace équipe (#admin) ---- */
+let TOK=sessionStorage.getItem("nc_tok")||"",cache=[];
+const STAT=["Nouveau","En cours","Devis envoyé","Gagné","Perdu"];
+function login(msg){
+ $("#adm-st").textContent=msg||"Connexion équipe";
+ $("#adm-list").innerHTML=`<div class="form" style="max-width:380px;margin:0"><div class="f"><label class="q">Email</label><input type="email" id="le"></div><div class="f"><label class="q">Mot de passe</label><input type="password" id="lp" style="width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:12px"></div><button class="btn" id="lb">Se connecter</button></div>`;
+ $("#lb").onclick=async()=>{
+  const x=await fetch(SB_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:H(),body:JSON.stringify({email:$("#le").value,password:$("#lp").value})});
+  const j=await x.json();
+  if(!x.ok||!j.access_token)return login("Identifiants incorrects.");
+  TOK=j.access_token;sessionStorage.setItem("nc_tok",TOK);admin();
+ };
+}
+async function admin(){
+ if(!cfg()){$("#adm-st").textContent="Supabase n’est pas encore configuré (voir LISEZMOI.md).";return}
+ if(!TOK)return login();
+ $("#adm-st").textContent="Chargement…";
+ const x=await fetch(SB_URL+"/rest/v1/briefs?select=*&order=created_at.desc",{headers:H(TOK)});
+ if(x.status===401||x.status===403){TOK="";sessionStorage.removeItem("nc_tok");return login("Session expirée.")}
+ const rows=await x.json();
+ cache=rows.map(r=>({...r.donnees,id:r.id,statut:r.statut,recu:r.created_at}));
+ $("#adm-st").textContent=cache.length?`${cache.length} brief(s) reçu(s).`:"Aucun brief reçu pour le moment.";
+ $("#adm-list").innerHTML=cache.map(x=>`<div class="bl"><h3><span>${esc(x.nom)} ${x.societe?"· "+esc(x.societe):""}</span><span class="pill">${esc(x.type)} · ${esc(x.budget)}</span></h3><small style="color:var(--mu)">${new Date(x.recu).toLocaleString("fr-FR")}</small> <select data-id="${x.id}" style="width:auto;padding:4px 8px;margin-left:8px">${STAT.map(s=>`<option ${s===x.statut?"selected":""}>${s}</option>`).join("")}</select><dl>${Object.keys(LAB).filter(k=>val(x[k])&&k!=="consent").map(k=>`<dt>${esc(LAB[k])}</dt><dd>${esc(val(x[k]))}</dd>`).join("")}</dl></div>`).join("");
+ document.querySelectorAll("#adm-list select[data-id]").forEach(s=>s.onchange=()=>fetch(SB_URL+"/rest/v1/briefs?id=eq."+s.dataset.id,{method:"PATCH",headers:H(TOK),body:JSON.stringify({statut:s.value})}));
+}
+$("#csv").onclick=()=>{
+ if(!cache.length)return;
+ const keys=["recu","statut",...Object.keys(LAB).filter(k=>k!=="consent")],q=v=>'"'+val(v).replace(/"/g,'""')+'"';
+ const csv="\ufeff"+[keys.map(k=>q(LAB[k]||k)).join(";"),...cache.map(x=>keys.map(k=>q(x[k])).join(";"))].join("\n");
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="briefs-novacrea.csv";a.click();
+};
+function route(){
+ const h=location.hash,a=h==="#admin",l=h==="#legal";
+ $("#site").classList.toggle("hid",a||l);$("#admin").classList.toggle("hid",!a);$("#legal").classList.toggle("hid",!l);
+ if(a)admin();
+ if(a||l)window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);render();route();
+</script>
+</body>
+</html>
