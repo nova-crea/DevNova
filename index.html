@@ -224,24 +224,35 @@ function render(){
  $("#next").onclick=()=>{collect();if(validate()){step++;render();$("#brief").scrollIntoView({behavior:"smooth"})}};
 }
 /* ===== CONFIGURATION : à remplir ===== */
-const SB_URL="https://VOTRE-PROJET.supabase.co";
-const SB_KEY="VOTRE_CLE_ANON_PUBLIQUE";
+const SB_URL="https://lxgydpurlpvpazuswpiq.supabase.co";
+const SB_KEY="sb_publishable_YpA82MdAXfkWpBtpwzt3Vg_79ZIyf09";
+const WEB3_KEY="93c3dfb1-339a-4ad3-aa29-984a6221fd67";
 const MAIL="contact@votredomaine.com";
 /* ====================================== */
-const H=t=>({apikey:SB_KEY,Authorization:"Bearer "+(t||SB_KEY),"Content-Type":"application/json"});
+const H=t=>({apikey:SB_KEY,...(t?{Authorization:"Bearer "+t}:{}),"Content-Type":"application/json"});
 const cfg=()=>!SB_URL.includes("VOTRE");
 async function send(){
  const b=$("#send"),r=$("#res");b.disabled=true;b.textContent="Envoi…";
  const rec={...A,consent:true,recu:new Date().toISOString()};
- try{
-  if(!cfg())throw 0;
-  const x=await fetch(SB_URL+"/rest/v1/briefs",{method:"POST",headers:{...H(),Prefer:"return=minimal"},body:JSON.stringify({nom:A.nom,email:A.email,type:A.type,budget:A.budget,donnees:rec})});
-  if(!x.ok)throw 0;
+ const txt=Object.keys(LAB).filter(k=>val(rec[k])&&k!=="consent").map(k=>`${LAB[k]} : ${val(rec[k])}`).join("\n");
+ const jobs=[];
+ /* 1) Enregistrement dans Supabase */
+ if(cfg())jobs.push(
+  fetch(SB_URL+"/rest/v1/briefs",{method:"POST",headers:{...H(),Prefer:"return=minimal"},body:JSON.stringify({nom:A.nom,email:A.email,type:A.type,budget:A.budget,donnees:rec})})
+  .then(x=>{if(!x.ok)throw new Error("Supabase "+x.status)})
+ );
+ /* 2) Envoi par email (Web3Forms) */
+ if(WEB3_KEY)jobs.push(
+  fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3_KEY,subject:"Nouveau brief projet — "+(A.nom||""),from_name:"Brief NovaCréa",name:A.nom||"",email:A.email||"",message:txt,botcheck:""})})
+  .then(async x=>{const j=await x.json().catch(()=>({}));if(!x.ok||j.success===false)throw new Error("Email "+x.status)})
+ );
+ const res=await Promise.allSettled(jobs);
+ res.forEach(x=>x.status==="rejected"&&console.error(x.reason));
+ if(res.some(x=>x.status==="fulfilled")){
   $("#form").innerHTML=`<h3>✅ Merci ${esc((A.nom||"").split(" ")[0])} !</h3><p>Votre brief a bien été enregistré. Notre équipe l’analyse et vous répond sous 24 h ouvrées. Un devis détaillé suit sous 3 à 5 jours.</p><a class="btn sec" href="#top">Retour à l’accueil</a>`;
   A={};step=0;
- }catch(e){
+ }else{
   b.disabled=false;b.textContent="Envoyer mon brief";
-  const txt=Object.keys(LAB).filter(k=>val(rec[k])&&k!=="consent").map(k=>`${LAB[k]} : ${val(rec[k])}`).join("\n");
   r.innerHTML=`<div class="msg ko">L’envoi automatique a échoué. Vous pouvez nous transmettre votre brief par email en un clic.<br><br><a class="btn" href="mailto:${MAIL}?subject=${encodeURIComponent("Brief projet — "+(A.nom||""))}&body=${encodeURIComponent(txt)}">Envoyer par email</a></div>`;
  }
 }
